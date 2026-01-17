@@ -2,6 +2,7 @@ package com.inventory.controller;
 
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,50 +23,63 @@ public class AuthController {
         this.service = service;
     }
 
-    // REGISTER
+    // ================= REGISTER =================
     @PostMapping("/register")
-    public void register(@RequestBody User user) {
-        service.register(user);
+    public ResponseEntity<String> register(@RequestBody User user) {
+        try {
+            service.register(user);
+            return ResponseEntity.ok("Registered successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    // LOGIN
+    // ================= LOGIN =================
     @PostMapping("/login")
-    public Map<String, String> login(@RequestBody Map<String, String> data) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> data) {
 
         User user = service.login(
-                data.get("username"), // email from frontend
+                data.get("email"),
                 data.get("password"),
                 data.get("role")
         );
 
         if (user == null) {
-            throw new RuntimeException("Invalid credentials");
+            return ResponseEntity.status(401)
+                    .body("Invalid email / password / role");
         }
 
-        return Map.of(
-                "username", user.getEmail(),
-                "role", user.getRole(),
-                "token", "dummy-token"
+        return ResponseEntity.ok(
+                Map.of(
+                        "username", user.getEmail(),
+                        "role", user.getRole(),
+                        "token", "dummy-token"
+                )
         );
     }
 
-    // SEND OTP
+    // ================= SEND OTP =================
     @PostMapping("/send-otp")
-    public void sendOtp(@RequestBody Map<String, String> data) {
-        service.sendOtp(data.get("username"));
+    public ResponseEntity<String> sendOtp(@RequestBody Map<String, String> data) {
+        service.sendOtp(data.get("email"));
+        return ResponseEntity.ok("OTP sent");
     }
 
-    // RESET PASSWORD
+    // ================= RESET PASSWORD =================
     @PostMapping("/reset-password")
-    public void resetPassword(@RequestBody Map<String, String> data) {
+    public ResponseEntity<String> resetPassword(
+            @RequestBody Map<String, String> data) {
+
         boolean ok = service.resetPassword(
-                data.get("username"),
+                data.get("email"),
                 data.get("otp"),
                 data.get("newPassword")
         );
 
         if (!ok) {
-            throw new RuntimeException("Invalid OTP");
+            return ResponseEntity.badRequest().body("Invalid OTP");
         }
+
+        return ResponseEntity.ok("Password reset successful");
     }
 }
