@@ -33,3 +33,109 @@ a{
 color:#1e3c72;
 font-weight:bold;
 }
+
+body{
+font-family:Arial, sans-serif;
+background:#f4f6f9;
+margin:0;
+padding:0;
+}
+
+/* Page Heading */
+h2{
+text-align:center;
+color:#1e3c72;
+margin-top:20px;
+}
+
+/* Main Card */
+.box{
+background:white;
+width:80%;
+margin:30px auto;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Inputs */
+input{
+width:95%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+/* Buttons */
+button{
+padding:10px 20px;
+background:#1e3c72;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+button:hover{
+background:#2a5298;
+}
+
+/* Tables */
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:12px;
+text-align:center;
+}
+
+th{
+background:#1e3c72;
+color:white;
+}
+
+/* Status Colors */
+.low{
+color:red;
+font-weight:bold;
+}
+
+.ok{
+color:green;
+font-weight:bold;
+}
+
+/* Alert List */
+ul{
+list-style:none;
+padding:0;
+}
+
+ul li{
+background:#eef2f3;
+margin:8px 0;
+padding:10px;
+border-left:5px solid #1e3c72;
+}
+
+/* Notification Status */
+.read{
+color:green;
+font-weight:bold;
+}
+
+.unread{
+color:red;
+font-weight:bold;
+}
+#pmsg{
+font-weight:bold;
+margin-top:10px;
+}
+

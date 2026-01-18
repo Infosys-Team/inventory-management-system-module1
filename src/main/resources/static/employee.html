@@ -13,12 +13,46 @@ if (!user || user.role !== "emp") {
 </head>
 
 <body>
+
 <h2>Employee Dashboard</h2>
 
 <div class="box">
   <p>✅ Login Successful</p>
   <p>Welcome Employee</p>
   <button onclick="logout()">Logout</button>
+</div>
+
+<!-- ========== PRODUCT MODULE ========== -->
+
+<div class="box">
+  <h3>Product & Inventory Management</h3>
+
+  <input id="psku" placeholder="SKU">
+  <input id="pname" placeholder="Product Name">
+  <input id="psupplier" placeholder="Supplier">
+  <input id="pcat" placeholder="Category">
+  <input id="pprice" type="number" placeholder="Price">
+  <input id="pqty" type="number" placeholder="Quantity">
+
+  <button id="addBtn">Add Product</button>
+
+  <p id="pmsg"></p>
+
+  <table>
+  <thead>
+    <tr>
+      <th>SKU</th>
+      <th>Name</th>
+      <th>Supplier</th>
+      <th>Category</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody id="ptable"></tbody>
+</table>
+
 </div>
 
 <script src="script.js"></script>
