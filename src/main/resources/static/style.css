@@ -1,141 +1,163 @@
-body{
-font-family:Arial;
-background:#1e3c72;
-color:white;
-text-align:center;
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.box{
-background:white;
-color:black;
-width:320px;
-margin:auto;
-padding:20px;
-border-radius:10px;
+/* ===== BODY ===== */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #2e2e2e;
+  color: #eaeaea;
+  padding: 20px;
 }
 
-input,select{
-width:90%;
-padding:8px;
-margin:8px;
+.logout-btn {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: #63b7a6;
+  color: #0f3d3a;
+  border: none;
+  padding: 8px 16px;
+ 
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  z-index: 1000;
 }
 
-button{
-padding:10px;
-width:95%;
-background:#1e3c72;
-color:white;
-border:none;
-cursor:pointer;
+.logout-btn:hover {
+  background: #4fa493;
 }
 
-a{
-color:#1e3c72;
-font-weight:bold;
+
+/* ===== PAGE TITLE ===== */
+h2 {
+  text-align: center;
+  color: #f1e6a5;
+  margin-bottom: 25px;
+  font-size: 28px;
 }
 
-body{
-font-family:Arial, sans-serif;
-background:#f4f6f9;
-margin:0;
-padding:0;
+/* ===== CARD / BOX ===== */
+.box {
+  background: #1f1f1f;
+  margin: 25px auto;
+  padding: 25px;
+  max-width: 1100px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
-/* Page Heading */
-h2{
-text-align:center;
-color:#1e3c72;
-margin-top:20px;
+/* ===== SECTION HEADINGS ===== */
+.box h3 {
+  color: #489685;
+  margin-bottom: 15px;
+  font-size: 20px;
 }
 
-/* Main Card */
-.box{
-background:white;
-width:80%;
-margin:30px auto;
-padding:25px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
+/* ===== TEXT ===== */
+.box p {
+  color: #b5b5b5;
+  margin-bottom: 10px;
 }
 
-/* Inputs */
-input{
-width:95%;
-padding:10px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:5px;
+/* ===== INPUTS & SELECT ===== */
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 8px 0;
+  background: #2b2b2b;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #eaeaea;
+  font-size: 14px;
 }
 
-/* Buttons */
-button{
-padding:10px 20px;
-background:#1e3c72;
-color:white;
-border:none;
-border-radius:5px;
-cursor:pointer;
-margin-bottom:15px;
+input::placeholder {
+  color: #888;
 }
 
-button:hover{
-background:#2a5298;
+/* ===== BUTTONS ===== */
+button {
+  background: #2dac93;
+  color: #0f3d3a;
+  border: none;
+  padding: 10px 18px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-/* Tables */
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:15px;
+button:hover {
+  background: #4fa493;
 }
 
-th,td{
-border:1px solid #ddd;
-padding:12px;
-text-align:center;
+/* Special button (Load Alerts) */
+button[onclick="loadAlerts()"] {
+  display: block;
+  margin: 20px auto;
 }
 
-th{
-background:#1e3c72;
-color:white;
+/* ===== TABLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
 
-/* Status Colors */
-.low{
-color:red;
-font-weight:bold;
+thead {
+  background: #0f3d3a;
 }
 
-.ok{
-color:green;
-font-weight:bold;
+th {
+  color: #63b7a6;
+  padding: 10px;
+  font-size: 14px;
 }
 
-/* Alert List */
-ul{
-list-style:none;
-padding:0;
+td {
+  padding: 10px;
+  font-size: 14px;
+  color: #eaeaea;
 }
 
-ul li{
-background:#eef2f3;
-margin:8px 0;
-padding:10px;
-border-left:5px solid #1e3c72;
+tbody tr:nth-child(even) {
+  background: #262626;
 }
 
-/* Notification Status */
-.read{
-color:green;
-font-weight:bold;
+tbody tr:hover {
+  background: #333;
 }
 
-.unread{
-color:red;
-font-weight:bold;
+/* ===== STATUS TEXT ===== */
+.success {
+  color: #35f585;
+  font-weight: bold;
 }
-#pmsg{
-font-weight:bold;
-margin-top:10px;
+
+.error {
+  color: #ff6b6b;
+  font-weight: bold;
 }
-  make a design like this update my style.cs
+
+/* ===== MESSAGE TEXT ===== */
+#pmsg, #umsg {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 24px;
+  }
+
+  .box {
+    padding: 18px;
+  }
+}

@@ -13,13 +13,13 @@ if (!user || user.role !== "emp") {
 </head>
 
 <body>
-
+<button class="logout-btn" onclick="logout()">Logout</button>
 <h2>Employee Dashboard</h2>
 
 <div class="box">
   <p>✅ Login Successful</p>
   <p>Welcome Employee</p>
-  <button onclick="logout()">Logout</button>
+  <!-- <button onclick="logout()">Logout</button> -->
 </div>
 
 <!-- ========== PRODUCT MODULE ========== -->
@@ -54,6 +54,29 @@ if (!user || user.role !== "emp") {
 </table>
 
 </div>
+
+
+<!-- ================= ALERTS (EMPLOYEE) ================= -->
+<button onclick="loadAlerts()">🔄 Load Alerts</button>
+
+<div class="box">
+  <h3>⚠️ Inventory Alerts</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Alert Type</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="alertTable"></tbody>
+  </table>
+</div>
+
+
+
 
 <script src="script.js"></script>
 </body>

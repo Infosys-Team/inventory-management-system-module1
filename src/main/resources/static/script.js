@@ -315,4 +315,143 @@ function stockOut(sku, currentQty) {
   .catch(() => alert("❌ Stock-Out failed"));
 }
 
+window.addEventListener("load", loadAlerts);
+
+function loadAlerts() {
+
+  const table = document.getElementById("alertTable");
+  if (!table) return;
+
+  const user = JSON.parse(window.localStorage.getItem("currentUser"));
+
+  fetch("http://localhost:8080/api/alerts")
+    .then(res => res.json())
+    .then(alerts => {
+
+      table.innerHTML = "";
+
+      alerts.forEach(a => {
+
+        // employee restriction
+        if (user.role === "emp" && a.type === "CRITICAL") return;
+
+        const tr = document.createElement("tr");
+
+        // color based on status
+        tr.className = a.status === "Unread"
+          ? "alert-unread"
+          : "alert-read";
+
+        tr.innerHTML = `
+          <td>${a.type}</td>
+          <td>${a.message}</td>
+          <td class="status">${a.status}</td>
+        `;
+
+        const actionTd = document.createElement("td");
+
+        if (user.role === "admin" && a.status === "Unread") {
+          const btn = document.createElement("button");
+          btn.innerText = "Mark Read";
+
+          btn.onclick = () => markRead(a.id, tr, btn);
+
+          actionTd.appendChild(btn);
+        } else {
+          actionTd.innerText = "-";
+        }
+
+        tr.appendChild(actionTd);
+        table.appendChild(tr);
+      });
+    });
+}
+
+function markRead(id, row, btn) {
+
+  fetch(`http://localhost:8080/api/alerts/read/${id}`, {
+    method: "PUT"
+  })
+  .then(() => {
+
+    // update UI immediately
+    row.classList.remove("alert-unread");
+    row.classList.add("alert-read");
+
+    row.querySelector(".status").innerText = "Read";
+
+    btn.classList.add("hidden");   // hide button
+  })
+  .catch(() => alert("Failed to update alert"));
+}
+
+// ================= USER MANAGEMENT (ADMIN) =================
+
+// Add user
+document.getElementById("addUserBtn")?.addEventListener("click", () => {
+
+  const uname = document.getElementById("uname").value;
+  const role  = document.getElementById("urole").value;
+  const msg   = document.getElementById("umsg");
+
+  if (!uname || !role) {
+    msg.innerHTML = "❌ All fields required";
+    return;
+  }
+
+  fetch("http://localhost:8080/api/admin/users", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: uname,
+      role: role
+    })
+  })
+  .then(res => res.text())
+  .then(t => {
+    msg.innerHTML = "✅ " + t;
+    loadUsers();
+  })
+  .catch(() => msg.innerHTML = "❌ Failed to add user");
+});
+
+// Load users
+function loadUsers() {
+
+  const table = document.getElementById("utable");
+  if (!table) return;
+
+  fetch("http://localhost:8080/api/admin/users")
+    .then(res => res.json())
+    .then(users => {
+
+      table.innerHTML = "";
+
+      users.forEach(u => {
+        table.innerHTML += `
+          <tr>
+            <td>${u.email}</td>
+            <td>${u.role}</td>
+            <td>${u.active ? "Active" : "Blocked"}</td>
+            <td>
+              <button onclick="toggleUser(${u.id})">
+                ${u.active ? "Block" : "Unblock"}
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+    });
+}
+
+function toggleUser(id) {
+  fetch(`http://localhost:8080/api/admin/users/toggle/${id}`, {
+    method: "PUT"
+  })
+  .then(() => loadUsers());
+}
+
+// auto load when admin page opens
+window.addEventListener("load", loadUsers);
+
 

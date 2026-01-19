@@ -13,13 +13,13 @@ if (!user || user.role !== "admin") {
 </head>
 
 <body>
-
+<button class="logout-btn" onclick="logout()">Logout</button>
 <h2>Admin Dashboard</h2>
 
 <div class="box">
   <p>✅ Login Successful</p>
   <p>Welcome Admin</p>
-  <button onclick="logout()">Logout</button>
+  <!-- <button onclick="logout()">Logout</button> -->
 </div>
 
 <!-- ================= ADD PRODUCT SECTION (MODULE 2) ================= -->
@@ -60,6 +60,53 @@ if (!user || user.role !== "admin") {
 
 </div>
 
+<!-- ================= ALERTS (ADMIN) ================= -->
+<button onclick="loadAlerts()">🔄 Load Alerts</button>
+
+<div class="box">
+  <h3>🔔 Inventory Alerts</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Alert Type</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="alertTable"></tbody>
+  </table>
+</div>
+
+<!-- ===== USER MANAGEMENT ===== -->
+<div class="box">
+  <h3>User Management</h3>
+
+  <input id="uname" placeholder="Username / Email">
+
+  <select id="urole">
+    <option value="">Select Role</option>
+    <option value="admin">Admin</option>
+    <option value="emp">Employee</option>
+  </select>
+
+  <button id="addUserBtn">Add User</button>
+
+  <p id="umsg"></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="utable"></tbody>
+  </table>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
