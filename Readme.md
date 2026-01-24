@@ -1,16 +1,15 @@
-# Read Me First
-The following was discovered as part of building this project:
-
-* The original package name 'com.inventory.inventory-backend' is invalid and this project uses 'com.inventory.inventory_backend' instead.
-
+#Readme first
 
 Inventory Management System
 
-This is a team-based Inventory Management System developed using Spring Boot for backend and HTML, CSS, JavaScript for frontend.
-The system supports role-based login for Admin and Employee users.
+This is a team-based Inventory Management System developed using Spring Boot for the backend and HTML, CSS, JavaScript for the frontend.
+The system focuses on basic inventory operations with role-based access for Admin and Employee users.
+
+⚠️ Note:
+The original package name com.inventory.inventory-backend was invalid.
+This project uses com.inventory.inventory_backend instead.
 
 🛠 Technologies Used
-
 Backend
 
 Java
@@ -19,7 +18,7 @@ Spring Boot
 
 Spring Data JPA
 
-MySQL (XAMPP)
+MySQL (MySQL Workbench)
 
 Frontend
 
@@ -31,14 +30,19 @@ JavaScript
 
 📁 Project Structure
 
-Backend code is written in Spring Boot
+Backend developed using Spring Boot
 
-Frontend files are placed inside
+Frontend static files located at:
+
 src/main/resources/static
 
-Database is managed using MySQL
 
-🔐 Features
+Database managed using MySQL Workbench
+
+REST APIs used for communication between frontend and backend
+
+📦 System Modules (3 Modules)
+1️⃣ User Management Module
 
 User Registration
 
@@ -48,65 +52,128 @@ Role-based access (Admin / Employee)
 
 OTP-based password reset
 
+2️⃣ Inventory Management Module
+
+Add new inventory items
+
+Update item quantity
+
+View available stock
+
+Track low-stock items
+
+Categorize items (e.g., medicines, equipment, supplies)
+
+3️⃣ Dashboard & Access Module
+
+Admin Dashboard
+
+Employee Dashboard
+
+Role-based redirection after login
+
 Session handling using browser localStorage
 
-👥 User Roles
+🔐 User Roles
+👑 Admin
 
-Admin: Can access Admin Dashboard
+Add and update inventory items
 
-Employee: Can access Employee Dashboard
+View all stock details
+
+Monitor low-stock alerts
+
+Access Admin Dashboard
+
+👨‍💼 Employee
+
+View inventory items
+
+Check stock availability
+
+Access Employee Dashboard
 
 🗄️ Database Details
 
 Database Name: inven_db
 
-Table: users
+Database Tool: MySQL Workbench
 
-Database used: MySQL (via XAMPP)
+Main Table: users
+
+Inventory-related tables store item details, quantity, and category
 
 ▶️ How to Run the Project
+Step 1: Start Database
 
-Start MySQL using XAMPP
+Open MySQL Workbench
 
-Run Spring Boot application
+Start MySQL server
 
-Run InventoryBackendApplication.java
+Ensure inven_db database exists
 
-OR use terminal:
+Step 2: Run Backend
+
+Open the project in IDE (IntelliJ / Eclipse)
+
+Run:
+
+InventoryBackendApplication.java
+
+
+OR using terminal:
 
 mvn spring-boot:run
 
+Step 3: Open Application
 
-Open browser and go to:
+Open browser and visit:
 
 http://localhost:8080/login.html
 
 🔒 Security Note
 
-This project uses localStorage for session handling.
-It is designed for learning and internship purposes, not for production use.
+Session handling is done using browser localStorage
+
+No Spring Security or JWT is used
+
+This project is intended for:
+
+Learning purposes
+
+Academic submission
+
+Internship projects
+
+❌ Not recommended for production use
 
 👨‍👩‍👦 Team Project
 
 This project is developed as a team project, where:
 
-Backend is handled using Spring Boot
+Backend development is handled using Spring Boot
 
-Frontend is handled using HTML, CSS, and JavaScript
+Frontend development is handled using HTML, CSS, JavaScript
 
-Code is shared via GitHub for collaboration
+Code is shared and managed using GitHub for collaboration
 
-📌 Purpose
+🎯 Purpose of the Project
 
 Academic project
 
 Internship submission
 
-Learning Spring Boot and REST APIs
+Learn Spring Boot & REST APIs
+
+Understand basic Inventory Management
 
 Team collaboration using GitHub
 
-✅ END--
+✅ END
+
+
+
+
 
 
 # Getting Started
